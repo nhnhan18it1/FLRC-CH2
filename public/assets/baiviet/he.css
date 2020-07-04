@@ -1,0 +1,258 @@
+body {
+    transition: all 1s;
+    background-color: rgba(245, 245, 245, 0.671);
+    overflow-x: hidden;
+}
+
+#logo {
+    transition: ease 0.7s;
+}
+
+#logo :hover {
+    /* transform: scale(1.2); */
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+    /* background-color: black; */
+}
+
+#logo img {
+    height: 45px;
+    transition: all 0.7s;
+    border: 2px solid rgb(123, 9, 199);
+    padding: 3px 3px 3px 3px;
+    border-radius: 100%;
+    /* background-image: linear-gradient(120deg,blue,rgb(255, 0, 43),rgb(255, 238, 0)); */
+    border-radius: 100%;
+}
+
+#mn {
+    border-bottom: 1px solid black;
+    box-shadow: 0px 0px 10px black;
+    padding-left: 250px;
+}
+
+.back-to-top {
+    width: 50px;
+    height: 50px;
+    background: rgb(0, 0, 0, 0.7);
+    font-size: 35px;
+    color: whitesmoke;
+    text-align: center;
+    vertical-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    margin-left: -250px;
+    cursor: pointer;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.back-to-top.hien-ra {
+    visibility: visible;
+    opacity: 1;
+}
+
+.card-body img {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.card-body p {
+    margin-left: 15px;
+}
+
+.card-body h4 {
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+.card {
+    margin-top: 25px;
+}
+
+
+/* Chat containers */
+
+.container {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+
+/* Darker chat container */
+
+.darker {
+    border-color: #ccc;
+    background-color: #ddd;
+}
+
+
+/* Clear floats */
+
+.container::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+/* Style images */
+
+.container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+
+/* Style the right image */
+
+.container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right: 0;
+}
+
+
+/* Style time text */
+
+.time-right {
+    float: right;
+    color: #aaa;
+}
+
+
+/* Style time text */
+
+.time-left {
+    float: left;
+    color: #999;
+}
+
+.an {
+    display: none;
+}
+
+.hien {
+    display: block;
+}
+
+.badge {
+    position: absolute;
+    top: -17px;
+    right: 50px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
+
+.popover-body {
+    padding: 2px 2px 2px 2px;
+    max-width: 400px;
+    width: 350px;
+}
+
+.popover {
+    max-width: 450px;
+    max-height: 350px;
+    overflow-y: scroll;
+}
+
+.popover-header {}
+
+.chip {
+    display: inline-block;
+    padding: 0 25px;
+    margin-bottom: 1px;
+    height: 60px;
+    width: 100%;
+    font-size: 18px;
+    line-height: 50px;
+    border: 1px solid rgba(90, 88, 88, 0.884);
+    background-color: #f1f1f1;
+}
+
+.chip img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.closebtn {
+    padding-left: 10px;
+    color: #888;
+    font-weight: bold;
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: #000;
+}
+
+.yc {
+    margin-top: 10px;
+    ;
+    float: right;
+}
+
+#comment img {
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    border: 1.2px solid white;
+}
+
+#rsSearch {
+    position: absolute;
+    display: none;
+    height: 200px;
+    width: 350px;
+    background-color: black;
+    left: 0;
+    top: 0;
+    margin-top: 36px;
+    border: 1px solid rgb(218, 218, 218);
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    max-height: 550px;
+    min-height: auto;
+    overflow-y: auto;
+}
+
+.list-group-item {
+    color: black;
+}
+
+.list-group-item a {
+    color: black;
+}
+
+.list-group-item a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 450px) {
+    #ads {
+        display: none;
+    }
+    #mn {
+        padding-left: 0;
+    }
+}

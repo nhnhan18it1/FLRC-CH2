@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    overflow-x: hidden;
+
+}
+body{
+    min-height: 100vh;
+    background-image: linear-gradient(120deg,#0a80ce,#8d0c0c);
+
+
+}
+.form-group{
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 360px;
+    background: #f1f1f1;
+    height: 580px;
+    padding: 80px 40px;
+    border-radius: 10px;
+
+    margin-top: 10px;
+
+    margin: 0 auto;
+
+}
+.form-group{
+    border-bottom: 2px solid dodgerblue;
+
+}
+.form-group input{
+    font-size: 15px;
+    color: black;
+    border: none;
+    border-bottom: 1.5px solid blue;
+    width: 100%;
+    outline: none;
+    background: none;
+    position: relative;
+    transition: all .5s;
+
+}
+.form-group label{
+    position: absolute;
+    opacity: 1;
+    transition: all .5s;
+    color:rgb(17, 29, 192);
+    font-size: 18px;
+    margin-left: 30px;
+}
+.An{
+    visibility: hidden;
+    transform: translate(-35%,40%);
+    opacity: 0;
+}
+.hienra{
+    visibility: visible;
+    transform: translate(-35%,-90%);
+    opacity: 1;
+
+}
+#btn-login{
+    background-image: linear-gradient(120deg,blue,rgb(255, 0, 212));
+    padding: 10px 10px 10px 10px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-style: bold;
+    cursor: pointer;
+    transition: .5s;
+}
+#btn-login:hover #btn-login{
+    background-image: linear-gradient(90deg,blue,rgb(255, 0, 212));
+
+}
+
