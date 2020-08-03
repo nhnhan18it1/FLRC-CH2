@@ -496,6 +496,10 @@ class testController extends Controller
     public function GetGalary(Request $request)
     {
         $ss=newsmodel::orderByRaw('Clike DESC')->Limit(20)->get();
+        foreach ($ss as $va) {
+            $va->Avt=$va->account()->get()[0]->Avt;
+            $va->name=$va->account()->get()[0]->name;
+        }
         echo json_encode($ss);
     }
 }
