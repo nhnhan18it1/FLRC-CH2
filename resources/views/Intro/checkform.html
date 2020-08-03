@@ -1,0 +1,12 @@
+<form action="http://localhost:8888/FLRV-CH/api/postfile" method="post" enctype="multipart/form-data">
+    <label style="background: gray;display: block;" for=""> <strong><i class="far fa-newspaper"></i> Nội dung bài viết</strong></label>
+    <textarea style="border:none;border-bottom: 1px solid gray;" placeholder="{{ session()->get('Name') }} ơi? Bạn đang nghĩ gì vậy? Hãy chia sẻ cho bạn bè của mình biết đi." class="form-control" required name="Content" id="" rows="3"></textarea> |
+    <div class="file-upload-content">
+        <img style="width: 100px; height: 100px; border: 1px solid gray;" class="file-upload-image" src="#" alt="your image" />
+        <div class="image-title-wrap"></div>
+    </div>
+    <input type="text" name="IDND" id="">
+    <input style="display: block;" type="file" accept="image/png, image/jpeg, image/jpg" name="file_img" id="file" placeholder="file cua ban" class="custom-file-input" aria-describedby="fileHelpId">
+    <input type="submit" value="submit">
+    </div>
+</form>

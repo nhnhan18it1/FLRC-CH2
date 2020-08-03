@@ -1,0 +1,33 @@
+.container-fluid {
+    height: 100%;
+}
+
+
+/* .wrapper {
+    min-height: 100vh;
+    max-height: 100%;
+} */
+
+.sidebarc {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: visible;
+    z-index: 1000;
+    min-width: 62px;
+    background-color: blue;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 0;
+}
+
+.sidebar>.navbar {
+    position: relative;
+    height: 100%;
+    overflow: visible;
+}
+
+.sidebar-right {
+    right: 0;
+    left: initial;
+}

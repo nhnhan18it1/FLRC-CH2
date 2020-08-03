@@ -1,0 +1,31 @@
+*{
+    /* overflow-x: hidden; */
+}
+
+#menu{
+    height: 70px;
+    width: 100%;
+}
+#left ul li a{
+    font-style: bold;
+    font-size: 20px;
+}
+#logo{
+    transition: all 0.5s;
+
+}
+#logo :hover{
+    transform: rotate(360deg);
+}
+#logo img{
+    transition: all 0.5s;
+    height: 45px;
+    border: 2px solid rgb(123, 9, 199);
+    padding: 3px 3px 3px 3px;
+    border-radius: 100%;
+    background-image: linear-gradient(120deg,blue,rgb(255, 0, 43),rgb(255, 238, 0));
+    border-radius: 100%;
+}
+#menu{
+    background-image: linear-gradient(120deg,rgb(76, 63, 97),rgb(27, 26, 26));
+}
