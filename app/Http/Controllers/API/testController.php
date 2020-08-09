@@ -378,6 +378,7 @@ class testController extends Controller
     public function loadNews2(Request $request)
     {
         $news=newsmodel::join('account', 'news.IDND', '=', 'account.ID')
+        ->where("type_content","img")
         ->select('news.*', 'account.name','account.Avt')
         ->orderByRaw('created_at DESC')
         ->offset($request->offset)
