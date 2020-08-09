@@ -503,4 +503,50 @@ class testController extends Controller
         }
         echo json_encode($ss);
     }
+
+    public function loadNews3(Request $request)
+    {
+        $news=newsmodel::join('account', 'news.IDND', '=', 'account.ID')
+        ->where("type_content","video")
+        ->select('news.*', 'account.name','account.Avt')
+        ->orderByRaw('created_at DESC')
+        ->offset($request->offset)
+        ->limit(10)
+        ->get();
+            echo "[";
+            foreach ($news as $key => $value) {
+                echo "{";
+                echo "'name':'".$value->name."',";
+                echo "'Avt':'".$value->Avt."',";
+               echo "'IDBV':".$value->IDBV.",";
+               echo "'IDND':".$value->IDND.",";
+               echo "'Content':'".$value->Content."',";
+               echo "'Img':'".$value->Img."',";
+               echo "'type_content':'".$value->type_content."',";
+               echo "'CLike':".$value->CLike.",";
+               echo "'created_at':'".$value->created_at."',";
+               echo "'updated_at':'".$value->updated_at."',";
+
+                $s=$value->comments()->get();
+                foreach ($s as $va) {
+                    $va->Avt=$va->account()->get()[0]->Avt;
+                    $va->name=$va->account()->get()[0]->name;
+                }
+
+                echo "'comments':".json_encode($s);
+
+                if (($key)==count($news)-1) {
+                    echo "}";
+                }
+                else{
+                    echo "},";
+                }
+
+
+
+            }
+            echo "]";
+
+
+    }
 }

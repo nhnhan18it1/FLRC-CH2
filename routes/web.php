@@ -108,6 +108,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('scmt', 'API\testController@Client_Send_Comment');
     Route::post('scmt', 'API\testController@Client_Send_Comment');
     Route::get("getGalary",'API\testController@GetGalary');
+    Route::get('getvideo', 'API\testController@loadNews3');
 });
 
 Route::group(['prefix' => 'pChat'], function () {
