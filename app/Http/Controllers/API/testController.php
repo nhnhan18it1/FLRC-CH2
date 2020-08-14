@@ -485,7 +485,7 @@ class testController extends Controller
         $res = $client->request('POST', '/notify', [
             'form_params' => [
                 'muser'=>json_encode($arr),
-                'data'=>'{"ID":'.$request->ID.',"Content":"'.$request->Content.'","Name":"'.$request->Name.'"}',
+                'data'=>'{"ID":'.$request->ID.',"Content":"'.$request->Content.'","IDBV":"'.$request->IDBV.'","Name":"'.$request->Name.'"}',
 
         ],
         ]);
