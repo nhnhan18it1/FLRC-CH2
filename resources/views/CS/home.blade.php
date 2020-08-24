@@ -1,4 +1,8 @@
-@extends('CS.master') @section('title','home') @extends('CS.menu_left') @section('content') @section('ct_right')
+@extends('CS.master')
+@section('title','home')
+@extends('CS.menu_left')
+@section('content')
+@section('ct_right')
 
 
 

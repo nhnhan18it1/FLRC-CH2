@@ -21,60 +21,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 class testController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
     public function Login(Request $request)
     {
         $email=$request->username;
@@ -384,39 +331,26 @@ class testController extends Controller
         ->offset($request->offset)
         ->limit(10)
         ->get();
-            echo "[";
-            foreach ($news as $key => $value) {
-                echo "{";
-                echo "'name':'".$value->name."',";
-                echo "'Avt':'".$value->Avt."',";
-               echo "'IDBV':".$value->IDBV.",";
-               echo "'IDND':".$value->IDND.",";
-               echo "'Content':'".$value->Content."',";
-               echo "'Img':'".$value->Img."',";
-               echo "'type_content':'".$value->type_content."',";
-               echo "'CLike':".$value->CLike.",";
-               echo "'created_at':'".$value->created_at."',";
-               echo "'updated_at':'".$value->updated_at."',";
-
-                $s=$value->comments()->get();
-                foreach ($s as $va) {
-                    $va->Avt=$va->account()->get()[0]->Avt;
-                    $va->name=$va->account()->get()[0]->name;
+        $cs=array();
+        foreach ($news as $key => $value) {
+            $cs[]=$value->IDBV;
+        }
+        $cmts=comments::whereIn("IDBV",$cs)
+        ->join("account","account.ID","=","comments.IDNBL")
+        ->select("comments.*","account.name","account.Avt")
+        ->get();
+        foreach ($news as $key => $value) {
+            $sm=array();
+            foreach ($cmts as $k => $va) {
+                if ($va->IDBV==$value->IDBV) {
+                    $sm[]=$va;
+                    unset($cmts[$k]);
                 }
-
-                echo "'comments':".json_encode($s);
-
-                if (($key)==count($news)-1) {
-                    echo "}";
-                }
-                else{
-                    echo "},";
-                }
-
-
-
             }
-            echo "]";
+           $value->comments=$sm;
+        }
+
+        echo json_encode($news);
 
 
     }
@@ -513,40 +447,56 @@ class testController extends Controller
         ->offset($request->offset)
         ->limit(10)
         ->get();
-            echo "[";
-            foreach ($news as $key => $value) {
-                echo "{";
-                echo "'name':'".$value->name."',";
-                echo "'Avt':'".$value->Avt."',";
-               echo "'IDBV':".$value->IDBV.",";
-               echo "'IDND':".$value->IDND.",";
-               echo "'Content':'".$value->Content."',";
-               echo "'Img':'".$value->Img."',";
-               echo "'type_content':'".$value->type_content."',";
-               echo "'CLike':".$value->CLike.",";
-               echo "'created_at':'".$value->created_at."',";
-               echo "'updated_at':'".$value->updated_at."',";
-
-                $s=$value->comments()->get();
-                foreach ($s as $va) {
-                    $va->Avt=$va->account()->get()[0]->Avt;
-                    $va->name=$va->account()->get()[0]->name;
+        $cs=array();
+        foreach ($news as $key => $value) {
+            $cs[]=$value->IDBV;
+        }
+        $cmts=comments::whereIn("IDBV",$cs)
+        ->join("account","account.ID","=","comments.IDNBL")
+        ->select("comments.*","account.name","account.Avt")
+        ->get();
+        foreach ($news as $key => $value) {
+            $sm=array();
+            foreach ($cmts as $k => $va) {
+                if ($va->IDBV==$value->IDBV) {
+                    $sm[]=$va;
+                    unset($cmts[$k]);
                 }
-
-                echo "'comments':".json_encode($s);
-
-                if (($key)==count($news)-1) {
-                    echo "}";
-                }
-                else{
-                    echo "},";
-                }
-
-
-
             }
-            echo "]";
+           $value->comments=$sm;
+        }
 
+        echo json_encode($news);
 
+    }
+    public function loadNews4(Request $request)
+    {
+        $news=newsmodel::join('account', 'news.IDND', '=', 'account.ID')
+        ->where([["type_content","img"],["IDND",$request->IDND]])
+        ->select('news.*', 'account.name','account.Avt')
+        ->orderByRaw('created_at DESC')
+        ->offset($request->offset)
+        ->limit(10)
+        ->get();
+        $cs=array();
+        foreach ($news as $key => $value) {
+            $cs[]=$value->IDBV;
+        }
+        $cmts=comments::whereIn("IDBV",$cs)
+        ->join("account","account.ID","=","comments.IDNBL")
+        ->select("comments.*","account.name","account.Avt")
+        ->get();
+        foreach ($news as $key => $value) {
+            $sm=array();
+            foreach ($cmts as $k => $va) {
+                if ($va->IDBV==$value->IDBV) {
+                    $sm[]=$va;
+                    unset($cmts[$k]);
+                }
+            }
+           $value->comments=$sm;
+        }
+
+        echo json_encode($news);
     }
 }
