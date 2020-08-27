@@ -499,4 +499,11 @@ class testController extends Controller
 
         echo json_encode($news);
     }
+    public function Search(Request $request)
+    {
+        $acc=account::where('name','like','%'.$request->name.'%')
+        ->select('name','ID','Avt')
+        ->get();
+        echo json_encode($acc);
+    }
 }

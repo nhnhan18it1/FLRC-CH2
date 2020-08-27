@@ -110,6 +110,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::get("getGalary",'API\testController@GetGalary');
     Route::get('getvideo', 'API\testController@loadNews3');
     Route::get('getnews4','API\testController@loadNews4' );
+    Route::get('search', 'API\testController@search');
+
 });
 
 Route::group(['prefix' => 'pChat'], function () {
