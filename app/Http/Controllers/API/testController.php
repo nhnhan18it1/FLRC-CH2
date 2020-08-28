@@ -506,4 +506,34 @@ class testController extends Controller
         ->get();
         echo json_encode($acc);
     }
+    public function GetANews(Request $request)
+    {
+        $news=newsmodel::join('account', 'news.IDND', '=', 'account.ID')
+        ->where([["type_content","img"],["IDBV",$request->IDBV]])
+        ->select('news.*', 'account.name','account.Avt')
+        ->orderByRaw('created_at DESC')
+        ->offset($request->offset)
+        ->limit(10)
+        ->get();
+        $cs=array();
+        foreach ($news as $key => $value) {
+            $cs[]=$value->IDBV;
+        }
+        $cmts=comments::whereIn("IDBV",$cs)
+        ->join("account","account.ID","=","comments.IDNBL")
+        ->select("comments.*","account.name","account.Avt")
+        ->get();
+        foreach ($news as $key => $value) {
+            $sm=array();
+            foreach ($cmts as $k => $va) {
+                if ($va->IDBV==$value->IDBV) {
+                    $sm[]=$va;
+                    unset($cmts[$k]);
+                }
+            }
+           $value->comments=$sm;
+        }
+
+        echo json_encode($news);
+    }
 }
