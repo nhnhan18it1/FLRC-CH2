@@ -349,6 +349,18 @@ class testController extends Controller
             }
            $value->comments=$sm;
         }
+        $like=likelist::whereIN("IDBV",$cs)->where("IDNL",$request->IDND)->get();
+        foreach ($news as $key => $value) {
+            $islike=false;
+            foreach ($like as $k => $va) {
+                if ($va->IDBV==$value->IDBV) {
+                    $islike=true;
+                    unset($like[$k]);
+                    break;
+                }
+            }
+            $value->islike=$islike;
+        }
 
         echo json_encode($news);
 
@@ -465,7 +477,18 @@ class testController extends Controller
             }
            $value->comments=$sm;
         }
-
+        $like=likelist::whereIN("IDBV",$cs)->where("IDNL",$request->ID)->get();
+        foreach ($news as $key => $value) {
+            $islike=false;
+            foreach ($like as $k => $va) {
+                if ($va->IDBV==$value->IDBV) {
+                    $islike=true;
+                    unset($like[$k]);
+                    break;
+                }
+            }
+            $value->islike=$islike;
+        }
         echo json_encode($news);
 
     }
@@ -495,6 +518,18 @@ class testController extends Controller
                 }
             }
            $value->comments=$sm;
+        }
+        $like=likelist::whereIN("IDBV",$cs)->where("IDNL",$request->IDND)->get();
+        foreach ($news as $key => $value) {
+            $islike=false;
+            foreach ($like as $k => $va) {
+                if ($va->IDBV==$value->IDBV) {
+                    $islike=true;
+                    unset($like[$k]);
+                    break;
+                }
+            }
+            $value->islike=$islike;
         }
 
         echo json_encode($news);
@@ -533,6 +568,14 @@ class testController extends Controller
             }
            $value->comments=$sm;
         }
+        $islike=likelist::where([["IDBV",$request->IDBV],["IDNL",$request->IDND]])->count();
+        if ($islike>0) {
+            $news[0]->islike=true;
+        }
+        else{
+            $news[0]->islike=false;
+        }
+
 
         echo json_encode($news);
     }
