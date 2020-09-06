@@ -20,7 +20,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
-use function GuzzleHttp\json_decode;
+
 
 class testController extends Controller
 {
@@ -33,6 +33,7 @@ class testController extends Controller
         if (Auth::attempt(['Username' => trim($email), 'password' => trim($password)])) {
             $rs=account::where('Username',$email)->get();
             $rs[0]->infor=json_decode($rs[0]->infor);
+            // dd(json_decode($rs[0]->infor));
             echo json_encode($rs);
         }
         else {
