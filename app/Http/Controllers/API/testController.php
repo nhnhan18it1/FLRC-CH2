@@ -32,7 +32,7 @@ class testController extends Controller
         $remember=$request->_token;
         if (Auth::attempt(['Username' => trim($email), 'password' => trim($password)])) {
             $rs=account::where('Username',$email)->get();
-            $rs[0]->infor=json_decode($rs[0]->infor);
+            // $rs[0]->infor=json_decode($rs[0]->infor);
             // dd(json_decode($rs[0]->infor));
             echo json_encode($rs);
         }
