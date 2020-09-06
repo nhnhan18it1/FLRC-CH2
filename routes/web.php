@@ -112,6 +112,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('getnews4','API\testController@loadNews4' );
     Route::get('search', 'API\testController@search');
     Route::get('GetANews', 'API\testController@GetANews');
+    Route::get('getInforS', 'API\testController@loadnewsSearch');
 
 });
 

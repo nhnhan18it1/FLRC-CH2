@@ -55,9 +55,11 @@ class testController extends Controller
             $news->Img = '/public/assets/img/newi/news_' . $t . '.png';
             $news->type_content = 'img';
             $news->CLike = 0;
-            $news->save();
             testController::uploadfile($file,$t);
+            $news->save();
             echo $t;
+
+
         }
 
         else{
@@ -79,10 +81,9 @@ class testController extends Controller
 
     public function uploadfile($file,$name)
     {
-
             $file->move(
-                'public/assets/img/newi', //nơi cần lưu
-                'news_'.$name.'.png' //tên file
+                'assets/img/newi', //nơi cần lưu
+                'news_' .$name.'.png' //tên file
             );
     }
 
@@ -578,5 +579,12 @@ class testController extends Controller
 
 
         echo json_encode($news);
+    }
+    public function loadnewsSearch(Request $request)
+    {
+        $acc=account::where("ID",$request->IDND)->get();
+        $acc[0]->Username="";
+        $acc[0]->password="";
+        echo json_encode($acc);
     }
 }
