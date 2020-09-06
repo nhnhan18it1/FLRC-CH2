@@ -82,7 +82,7 @@ class testController extends Controller
     public function uploadfile($file,$name)
     {
             $file->move(
-                'assets/img/newi', //nơi cần lưu
+                'public/assets/img/newi', //nơi cần lưu
                 'news_' .$name.'.png' //tên file
             );
     }
