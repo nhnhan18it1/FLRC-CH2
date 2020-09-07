@@ -593,7 +593,14 @@ class testController extends Controller
         $acc[0]->Username="";
         $acc[0]->password="";
         $infor=infor::where("IDND",$request->IDND)->get();
+        $inf=json_decode($infor->first());
+        $inf->works=json_decode($inf->works);
+        $inf->education=json_decode($inf->education);
+        $inf->live=json_decode($inf->live);
+        $inf->relationship=json_decode($inf->relationship);
         $acc[0]->infor=$infor->first();
         echo json_encode($acc);
+
+        //echo $inf->education[0];
     }
 }
