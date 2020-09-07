@@ -598,7 +598,7 @@ class testController extends Controller
         $inf->education=json_decode($inf->education);
         $inf->live=json_decode($inf->live);
         $inf->relationship=json_decode($inf->relationship);
-        $acc[0]->infor=$infor->first();
+        $acc[0]->infor=$inf;
         echo json_encode($acc);
 
         //echo $inf->education[0];
