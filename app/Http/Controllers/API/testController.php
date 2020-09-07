@@ -12,6 +12,7 @@ use App\likelist;
 use App\list_friend;
 use App\chats;
 use App\advise_friend;
+use App\infor;
 use App\notification;
 use App\ur_notification;
 use App\story;
@@ -587,9 +588,12 @@ class testController extends Controller
     }
     public function loadnewsSearch(Request $request)
     {
+
         $acc=account::where("ID",$request->IDND)->get();
         $acc[0]->Username="";
         $acc[0]->password="";
+        $infor=infor::where("IDND",$request->IDND)->get();
+        $acc[0]->infor=$infor->first();
         echo json_encode($acc);
     }
 }
