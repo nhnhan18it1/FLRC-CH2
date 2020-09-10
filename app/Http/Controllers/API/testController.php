@@ -613,6 +613,15 @@ class testController extends Controller
             // }
 
         }
+        else{
+            $inf=json_decode('{
+                "education": [],
+                "works": [],
+                "relationship": [],
+                "live": [],
+                "IDND": 1
+            }');
+        }
 
 
 
