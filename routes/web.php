@@ -113,7 +113,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('search', 'API\testController@search');
     Route::get('GetANews', 'API\testController@GetANews');
     Route::get('getInforS', 'API\testController@loadnewsSearch');
-
+    Route::get('addFriend', 'API\testController@addFriend');
+    Route::delete('deleteAdvise', 'API\testController@cancelAdvise');
 });
 
 Route::group(['prefix' => 'pChat'], function () {

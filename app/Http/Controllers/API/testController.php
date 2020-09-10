@@ -619,15 +619,55 @@ class testController extends Controller
                 "works": [],
                 "relationship": [],
                 "live": [],
-                "IDND": 1
+                "IDND": '.$request->IDND.'
             }');
         }
+        $co=list_friend::where([["ID1",$request->IDND],["ID2",$request->IDS]])->orWhere([["ID1",$request->IDS],["ID2",$request->IDND]])->count();
+        if ($co==0) {
+            $isAd=advise_friend::where([["IDNN",$request->IDND],["IDNG",$request->IDS]])->orWhere([["IDNN",$request->IDS],["IDNG",$request->IDND]])->get();
+            if (count($isAd)==0) {
+                $acc[0]->friend="false";
+            }
+            else{
+                if ($isAd[0]->IDNG==$request->IDS) {
+                    $acc[0]->friend="sended";
+                }
+                else{
+                    $acc[0]->friend="received";
+                }
+            }
 
+        }
+        else{
+            $acc[0]->friend="true";
+        }
 
 
         $acc[0]->infor=$inf;
         echo json_encode($acc);
 
         //echo $inf->education[0];
+    }
+    public function addFriend(Request $request)
+    {
+        $co=list_friend::where([["ID1",$request->IDS],["ID2",$request->IDR]])->orWhere([["ID2",$request->IDS],["ID1",$request->IDR]])->count();
+        $isAd=advise_friend::where([["IDNN",$request->IDR],["IDNG",$request->IDS]])->orWhere([["IDNN",$request->IDS],["IDNG",$request->IDR]])->get();
+        if ($co==0&&count($isAd)==0) {
+            $af=new advise_friend;
+            $af->IDNG=$request->IDS;
+            $af->IDNN=$request->IDR;
+            $af->save();
+            echo "success";
+        }
+        else{
+            echo "false";
+        }
+
+    }
+
+    public function cancelAdvise(Request $request)
+    {
+        advise_friend::where([["IDNN",$request->IDR],["IDNG",$request->IDS]])->orWhere([["IDNN",$request->IDS],["IDNG",$request->IDR]])->delete();
+        echo "success";
     }
 }
