@@ -663,6 +663,9 @@ class testController extends Controller
             advise_friend::where([["IDNN",$request->IDR],["IDNG",$request->IDS]])->orWhere([["IDNN",$request->IDS],["IDNG",$request->IDR]])->delete();
             echo "false";
         }
+        else{
+            echo "is friend";
+        }
 
     }
 
