@@ -626,20 +626,20 @@ class testController extends Controller
         if ($co==0) {
             $isAd=advise_friend::where([["IDNN",$request->IDND],["IDNG",$request->IDS]])->orWhere([["IDNN",$request->IDS],["IDNG",$request->IDND]])->get();
             if (count($isAd)==0) {
-                $acc[0]->friend="false";
+                $inf->friend="false";
             }
             else{
                 if ($isAd[0]->IDNG==$request->IDS) {
-                    $acc[0]->friend="sended";
+                    $inf->friend="sended";
                 }
                 else{
-                    $acc[0]->friend="received";
+                    $inf->friend="received";
                 }
             }
 
         }
         else{
-            $acc[0]->friend="true";
+            $inf->friend="true";
         }
 
 
