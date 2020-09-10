@@ -115,6 +115,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('getInforS', 'API\testController@loadnewsSearch');
     Route::get('addFriend', 'API\testController@addFriend');
     Route::delete('deleteAdvise', 'API\testController@cancelAdvise');
+    Route::post('acceptAdvise', 'API\testController@acceptAdise');
 });
 
 Route::group(['prefix' => 'pChat'], function () {
