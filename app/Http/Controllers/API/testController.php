@@ -659,12 +659,21 @@ class testController extends Controller
             $af->save();
             echo "success";
         }
-        else if($co==0&&count($isAd)!=0){
+        else if($co==0&&count($isAd)!=0 && $isAd[0]->IDNG==$request->IDS){
             advise_friend::where([["IDNN",$request->IDR],["IDNG",$request->IDS]])->orWhere([["IDNN",$request->IDS],["IDNG",$request->IDR]])->delete();
             echo "false";
         }
+        elseif($co==0&&count($isAd)!=0 && $isAd[0]->IDNN==$request->IDS){
+            advise_friend::where([["IDNN",$request->IDR],["IDNG",$request->IDS]])->orWhere([["IDNN",$request->IDS],["IDNG",$request->IDR]])->delete();
+            $li=new list_friend;
+            $li->ID1=$request->IDS;
+            $li->ID2=$request->IDR;
+            $li->save();
+            echo "accept";
+        }
         else{
-            echo "is friend";
+            list_friend::where([["ID1",$request->IDS],["ID2",$request->IDR]])->orWhere([["ID2",$request->IDS],["ID1",$request->IDR]])->delete();
+            echo "unfriend";
         }
 
     }
